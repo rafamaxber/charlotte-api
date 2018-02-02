@@ -18,7 +18,9 @@ module.exports = () => {
   app.use(bodyParser.json());
   app.use(expressValidator());
 
-  consign()
+  consign({
+    verbose: false,
+  })
     .include('services')
     .then('controller')
     .then('routes')

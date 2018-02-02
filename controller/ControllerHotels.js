@@ -16,7 +16,10 @@ module.exports = (app) => {
 
     sortAscendentByPrice ( hotels ) {
       if (!hotels) {
-        throw new Error('Is necessary send all paremeters!');
+        throwError({
+          message: 'Is necessary send all paremeters!',
+          statusCode: 500
+        });
       }
       return hotels.sort((a, b) => a.price - b.price);
     },
@@ -47,7 +50,7 @@ module.exports = (app) => {
       return hotels.filter(item => item.rate == parseInt(rate));
     },
 
-    async filterHotels ( req, res ) {
+    async filterHotels( req, listHotels ) {
       const { minPrice, maxPrice, rate } = req.query;
       if (!rate, !minPrice, !maxPrice) {
         throwError({
@@ -56,7 +59,7 @@ module.exports = (app) => {
         });
       }
 
-      let { hotels } = await this.listHotels();
+      let { hotels } = listHotels;
       hotels = this.filterHotelsBetweenPrices({ hotels, minPrice, maxPrice });
       hotels = this.filterHotelsByRate({ hotels, rate });
       hotels = this.sortAscendentByPrice( hotels );
