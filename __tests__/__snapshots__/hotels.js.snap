@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App It should equal to mock 1`] = `
+Array [
+  Object {
+    "description": "The Omni Charlotte Hotel envelopes you in ultimate comfort with a signature touch of genuine North Carolina hospitality.",
+    "image": "https://www.raphaelfabeni.com.br/rv/test-resources/hotels/omni-charlotte.jpg",
+    "name": "Omni Charlotte Hotel",
+    "price": 280.5,
+    "price_history": Array [
+      Object {
+        "month": "Jan",
+        "value": 302,
+      },
+      Object {
+        "month": "Feb",
+        "value": 219,
+      },
+      Object {
+        "month": "Mar",
+        "value": 300,
+      },
+      Object {
+        "month": "Apr",
+        "value": 229,
+      },
+      Object {
+        "month": "May",
+        "value": 272,
+      },
+      Object {
+        "month": "Jun",
+        "value": 249,
+      },
+      Object {
+        "month": "Jul",
+        "value": 239,
+      },
+    ],
+    "rate": 4,
+  },
+  Object {
+    "description": "This luxury boutique hotel is located in Downtown Charlotte and features a complimentary continental breakfast in the Library Lounge and free WiFi. The Mint Museum of Craft Design is 100 metres away.",
+    "image": "https://www.raphaelfabeni.com.br/rv/test-resources/hotels/iveys-hotel.jpg",
+    "name": "The Ivey's Hotel",
+    "price": 290,
+    "price_history": Array [
+      Object {
+        "month": "Jan",
+        "value": 207,
+      },
+      Object {
+        "month": "Feb",
+        "value": 260.8,
+      },
+      Object {
+        "month": "Mar",
+        "value": 225,
+      },
+      Object {
+        "month": "Apr",
+        "value": 265.3,
+      },
+      Object {
+        "month": "May",
+        "value": 247.9,
+      },
+      Object {
+        "month": "Jun",
+        "value": 253,
+      },
+      Object {
+        "month": "Jul",
+        "value": 223.7,
+      },
+    ],
+    "rate": 4,
+  },
+  Object {
+    "description": "Located in the city centre of Charlotte, North Carolina, surrounded by local attractions including the Charlotte Convention Center, this hotel features an on-site restaurant and a modern, rooftop pool offering city views.",
+    "image": "https://www.raphaelfabeni.com.br/rv/test-resources/hotels/holiday-inn.jpg",
+    "name": "Holiday Inn Charlotte-Center City",
+    "price": 290,
+    "price_history": Array [
+      Object {
+        "month": "Jan",
+        "value": 286,
+      },
+      Object {
+        "month": "Feb",
+        "value": 316,
+      },
+      Object {
+        "month": "Mar",
+        "value": 263.4,
+      },
+      Object {
+        "month": "Apr",
+        "value": 352,
+      },
+      Object {
+        "month": "May",
+        "value": 257.8,
+      },
+      Object {
+        "month": "Jun",
+        "value": 300,
+      },
+      Object {
+        "month": "Jul",
+        "value": 289,
+      },
+    ],
+    "rate": 5,
+  },
+]
+`;

@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "node",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "test": "jest"
   },
   "dependencies": {
     "body-parser": "^1.17.1",
@@ -21,20 +22,5 @@
     "jest-cli": "^22.1.4",
     "nodemon": "^1.14.11",
     "supertest": "^3.0.0"
-  },
-  "jest": {
-    "automock": false,
-    "bail": true,
-    "collectCoverage": true,
-    "moduleFileExtensions": [
-      "js"
-    ],
-    "testFileExtensions": [
-      "js"
-    ],
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/coverage/"
-    ]
   }
 }
