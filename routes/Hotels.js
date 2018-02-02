@@ -17,9 +17,7 @@ module.exports = (app) => {
   }
 
   app.get(routePath, async (req, res) => {
-    const { minPrice, maxPrice, rate } = req.query;
-    const hotelsList = await ControllerHotels.listHotels();
-    const hotels = $private.filterHotels(req, hotelsList);
+    const hotels = await RestClient.fetchHotelByFilters(req.query);
     return res.status(200).json(hotels);
   });
 
