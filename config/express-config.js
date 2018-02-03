@@ -9,6 +9,8 @@ const dotenv = require('dotenv').config();
 module.exports = () => {
   const app = express();
 
+  app.disable('x-powered-by');
+
   app.use(morgan('common', {
     stream: {
       write: (message) => Logger.info(message)

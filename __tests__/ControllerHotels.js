@@ -1,4 +1,4 @@
-const mock_hotels = {
+let mock_hotels = {
   hotels: [
     {
       "name": "Super 8 Speedway/University",
@@ -54,7 +54,7 @@ const app = {
   services: {
     RestClient: {
       async fetchHotels() {
-        return await new Promise((resolve) => {
+        return await new Promise((resolve, reject) => {
           resolve(mock_hotels);
         });
       },
@@ -68,8 +68,6 @@ const {
   filterHotelsByRate,
   filterHotels,
 } = require('../controller/ControllerHotels')(app);
-
-const ControllerHotels = require('../controller/ControllerHotels')(app);
 
 describe('ControllerHotels', () => {
   describe('listHotels', () => {
@@ -94,6 +92,16 @@ describe('ControllerHotels', () => {
       ];
       expect(sortAscendentByPrice(obj)).toEqual([{ price: 0 }, { price: 2 }, { price: 5 }]);
     });
+
+    test('Should Throw error if not send all parameters', () => {
+      expect(() => {
+        sortAscendentByPrice();
+      }).toThrow({
+        message: 'Is necessary send all paremeters!',
+        statusCode: 500
+      });
+    });
+
   });
 
   describe('filterHotelsBetweenPrices', () => {
@@ -116,6 +124,16 @@ describe('ControllerHotels', () => {
       };
       expect(filterHotelsBetweenPrices(query)).toEqual([{ price: 15 }, { price: 20 }]);
     });
+
+    test('Should Throw error if not send all parameters', () => {
+      expect(() => {
+        filterHotelsBetweenPrices({});
+      }).toThrow({
+        message: 'Is necessary send all paremeters!',
+        statusCode: 500
+      });
+    });
+
   });
 
   describe('filterHotelsByRate', () => {
@@ -140,36 +158,13 @@ describe('ControllerHotels', () => {
       };
       expect(filterHotelsByRate(query)).toEqual([{ price: 20, rate: 3 }]);
     });
-  });
-
-  describe('filterHotels', () => {
-    test('Should return a correct mock after aplly all filters', async () => {
-      const obj = {
-        "hotels": [
-          {
-            price: 10,
-            rate: 1,
-          },
-          {
-            price: 15,
-            rate: 5,
-          },
-          {
-            price: 20,
-            rate: 3,
-          }
-        ]
-      };
-      const req = {
-        query: {
-          minPrice: 200,
-          maxPrice: 300,
-          rate: 4,
-        }
-      }
-      const filterHotelsAbs = filterHotels.bind(ControllerHotels);
-      let { hotels } = await filterHotelsAbs(req, obj);
-      expect(hotels).toEqual({});
+    test('Should Throw error if not send all parameters', () => {
+      expect(() => {
+        filterHotelsByRate();
+      }).toThrow({
+        message: 'Is necessary send all paremeters!',
+        statusCode: 500
+      });
     });
   });
 
