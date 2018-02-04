@@ -5,11 +5,14 @@ const expressValidator = require('express-validator');
 const morgan = require('morgan');
 const Logger = require('../services/Logger');
 const dotenv = require('dotenv').config();
+const cors = require('cors')
 
 module.exports = () => {
   const app = express();
 
   app.disable('x-powered-by');
+
+  app.use(cors());
 
   app.use(morgan('common', {
     stream: {
