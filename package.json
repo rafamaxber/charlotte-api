@@ -5,7 +5,7 @@
   "author": "Rafael Bernardo <rafamaxber@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node",
+    "start": "node index.js",
     "dev": "nodemon",
     "test": "jest"
   },
