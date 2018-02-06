@@ -1,0 +1,122 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Charlotte API",
+    "description": "Charlotte Application API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "charlotteapp-api.herokuapp.com",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "hotels",
+      "description": "API for hotels in the system"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/hotels": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "minPrice",
+            "type": "number",
+            "required": true,
+            "description": "Minimun price for filter hotels"
+          },
+          {
+            "in": "query",
+            "required": true,
+            "name": "maxPrice",
+            "type": "number",
+            "description": "Maximum price for filter hotels"
+          },
+          {
+            "in": "query",
+            "required": true,
+            "name": "rate",
+            "type": "number",
+            "description": "Rate for filter hotels"
+          },
+          {
+            "in": "query",
+            "name": "startDate",
+            "type": "number",
+            "description": "A timestamp with start date choosed"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "type": "number",
+            "description": "A timestamp with end date choosed"
+          }
+        ],
+        "tags": [
+          "Hotels"
+        ],
+        "summary": "Get all hotels in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Hotel"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Hotel": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "rate": {
+          "type": "integer"
+        },
+        "price": {
+          "type": "number"
+        },
+        "price_history": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "mounth": {
+                "type": "string"
+              },
+              "value": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

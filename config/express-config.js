@@ -6,12 +6,11 @@ const morgan = require('morgan');
 const dotenv = require('dotenv').config();
 const cors = require('cors')
 const swaggerUi = require('swagger-ui-express');
-const YAML = require('yamljs');
 const Logger = require('../services/Logger');
+const swaggerDocument = require('../swagger.json');
 
 module.exports = () => {
   const app = express();
-  const routeSwaggerPath = '/api-docs';
 
   app.disable('x-powered-by');
 
@@ -27,10 +26,7 @@ module.exports = () => {
   app.use(expressValidator());
 
 
-  if (process.env.NODE_ENV !== 'test' && process.env.NODE_ENV !== 'production') {
-    const swaggerDocument = YAML.load('./swagger.yml');
-    app.use(routeSwaggerPath, swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-  }
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
   consign({
     verbose: false,
