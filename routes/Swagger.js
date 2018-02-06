@@ -7,5 +7,3 @@ module.exports = (app) => {
   const routePath = '/api-docs';
   app.use(routePath, swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 }
-
-Swagger.js
