@@ -5,7 +5,7 @@ module.exports = (app) => {
   const ControllerHotels = app.controller.ControllerHotels;
 
   app.get(routePath, async (req, res) => {
-    const { minPrice, maxPrice, rate } = req.query;
+    const { minPrice, maxPrice, rate, startDate, endDate } = req.query;
     const listHotels = await ControllerHotels.listHotels()
       .then( hotels => ControllerHotels.filterHotelsBetweenPrices({
           hotels: hotels.hotels,
@@ -15,6 +15,7 @@ module.exports = (app) => {
       )
       .then( hotels => ControllerHotels.filterHotelsByRate({ hotels, rate }))
       .then( hotels => ControllerHotels.sortAscendentByPrice(hotels))
+      .then(hotels => ControllerHotels.sumTotalPriceByDate({ hotels, startDate, endDate }))
       .then( hotels => {
         return res.status(200).json(hotels);
       })

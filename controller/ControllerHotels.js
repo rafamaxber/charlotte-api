@@ -1,3 +1,4 @@
+const moment = require('moment');
 const { throwError } = require('../utils/helperError');
 
 module.exports = (app) => {
@@ -28,8 +29,23 @@ module.exports = (app) => {
       return hotels.sort((a, b) => a.price - b.price);
     },
 
-    // TODO: Implement filter for hotels by start date and end date
-    // filterHotelsByDate () { ... },
+    sumTotalPriceByDate({ hotels, startDate, endDate }) {
+      if (!startDate || !endDate) return hotels;
+      const start = moment(new Date(parseInt(startDate)), "DD.MM.YYYY");
+      const end = moment(new Date(parseInt(endDate)), "DD.MM.YYYY");
+      const dateDiff = parseInt(end.diff(start, 'days'));
+
+      const newHotels = hotels.map(hotel => {
+        const newHotel = Object.assign({}, hotel);
+        newHotel.pricePerDay = newHotel.price;
+        newHotel.pricePerDay = (newHotel.pricePerDay).toFixed(2);
+        newHotel.price = newHotel.pricePerDay * (dateDiff + 1);
+        newHotel.price = (newHotel.price).toFixed(1);
+        newHotel.stay = dateDiff;
+        return newHotel;
+      });
+      return newHotels;
+    },
 
     filterHotelsBetweenPrices({ hotels, minPrice, maxPrice } = {}) {
       if (!hotels || !minPrice || !maxPrice) {

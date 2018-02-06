@@ -67,6 +67,7 @@ const {
   filterHotelsBetweenPrices,
   filterHotelsByRate,
   filterHotels,
+  sumTotalPriceByDate,
 } = require('../controller/ControllerHotels')(app);
 
 describe('ControllerHotels', () => {
@@ -165,6 +166,17 @@ describe('ControllerHotels', () => {
         message: 'Is necessary send all paremeters!',
         statusCode: 500
       });
+    });
+  });
+
+  describe('sumTotalPriceByDate', () => {
+    test('It should equal to snapshot', () => {
+      const hotels = sumTotalPriceByDate({
+        hotels: mock_hotels.hotels,
+        startDate: '1517839200000',
+        endDate: '1517925600000'
+      });
+      expect(hotels).toMatchSnapshot();
     });
   });
 
