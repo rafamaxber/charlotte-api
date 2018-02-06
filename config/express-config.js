@@ -17,11 +17,6 @@ module.exports = () => {
 
   app.use(cors());
 
-  if (process.env.NODE_ENV !== 'test') {
-    const swaggerDocument = YAML.load('./swagger.yml');
-    app.use(routeSwaggerPath, swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-  }
-
   app.use(morgan('common', {
     stream: {
       write: (message) => Logger.info(message)
@@ -30,6 +25,12 @@ module.exports = () => {
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
   app.use(expressValidator());
+
+
+  if (process.env.NODE_ENV !== 'test' && process.env.NODE_ENV !== 'production') {
+    const swaggerDocument = YAML.load('./swagger.yml');
+    app.use(routeSwaggerPath, swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+  }
 
   consign({
     verbose: false,
