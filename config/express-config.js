@@ -18,7 +18,7 @@ module.exports = () => {
   app.use(cors());
 
   if (process.env.NODE_ENV !== 'test') {
-    const swaggerDocument = YAML.load('./swagger.yaml');
+    const swaggerDocument = YAML.load('./swagger.yml');
     app.use(routeSwaggerPath, swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   }
 
