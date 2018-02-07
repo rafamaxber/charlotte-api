@@ -5,6 +5,7 @@ const expressValidator = require('express-validator');
 const morgan = require('morgan');
 const dotenv = require('dotenv').config();
 const cors = require('cors')
+const path = require('path');
 const swaggerUi = require('swagger-ui-express');
 const Logger = require('../services/Logger');
 const swaggerDocument = require('../swagger.json');
@@ -27,7 +28,8 @@ module.exports = () => {
 
 
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
+  app.use('/static', express.static('public/dist-storybook/static/'));
+  app.use('/static', express.static('public'));
   consign({
     verbose: false,
   })
